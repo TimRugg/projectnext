@@ -10,7 +10,7 @@ const Nav = () => (
           <span className="icon-bar" />
         </button>
         <a href="/" className="navbar-brand">
-          Tim's Reading List
+          Project Next!
         </a>
       </div>
     </div>

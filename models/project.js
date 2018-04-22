@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
   abbreviation: { type: String, default: "TBD1" },
+  projectimage: String,
   category: { type: String, default: "Project" },
   status: { type: String, default: "Idea" },
   status_date: { type: Date, default: Date.now },

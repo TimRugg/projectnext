@@ -13,8 +13,7 @@ class Projects extends Component {
   state = {
     projects: [],
     title: "",
-    description: "",
-    projectimage: ""
+    description: ""
   };
 
   componentDidMount() {
@@ -23,9 +22,9 @@ class Projects extends Component {
 
   loadProjects = () => {
     API.getProjects()
-      .then(res => {
+      .then(res =>
         this.setState({ projects: res.data, description: "" })
-      })
+      )
       .catch(err => console.log(err));
   };
 
@@ -47,8 +46,7 @@ class Projects extends Component {
     if (this.state.title && this.state.description) {
       API.saveProject({
         title: this.state.title,
-        description: this.state.description,
-        projectimage: '../../images/image01.jpg'
+        description: this.state.description
       })
         .then(res => this.loadProjects())
         .catch(err => console.log(err));
@@ -87,18 +85,15 @@ class Projects extends Component {
                 {this.state.projects.map(project => (
                   <ListItem key={project._id}>
                     <Card>
-                      <CardHeader>{project.abbreviation}</CardHeader>
-                      <CardImg top src={project.projectimage} alt="Project Image" />
-                      {/* <CardImg top src={require({project.projectimage})} alt="Project Image" /> */}
-                      {/* <CardImg top src={require('../../images/image01.jpg')} alt="Project Image" /> */}
+                      <CardHeader>P001</CardHeader>
+                      <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
                       <CardTitle>{project.title}</CardTitle>
-                      <CardSubtitle>{project.projectimage}</CardSubtitle>
                       <CardLink>
                         <Link to={"/projects/" + project._id}>Link</Link>
                       </CardLink>
                       <CardBody>
                         <CardText>{project.description}</CardText>
-                        <CardFooter>Status: {project.status} {project.status_date} </CardFooter>
+                        <CardFooter>Status: Idea 11/12/2018</CardFooter>
                       </CardBody>
                     </Card>
                   </ListItem>
