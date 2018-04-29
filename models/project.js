@@ -2,16 +2,20 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
-  abbreviation: { type: String, default: "TBD1" },
-  projectimage: String,
-  category: { type: String, default: "Project" },
-  status: { type: String, default: "Idea" },
-  status_date: { type: Date, default: Date.now },
   title: { type: String, required: true },
   description: { type: String, required: true },
-  progress: { type: Number, default: 0 },
-  create_date: { type: Date, default: Date.now },
-  archive: { type: Boolean, default: false }
+  category: { type: String, default: "Project" },
+  start_date: { type: Date, default: Date.now },
+  status: { type: String, default: "Idea" },
+  status_date: { type: Date, default: Date.now },
+  progress: { type: Number, default: 0},
+  active: { type: Boolean, default: true },
+  actions: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Action"
+    }
+  ]
 });
 
 const Project = mongoose.model("Project", projectSchema);

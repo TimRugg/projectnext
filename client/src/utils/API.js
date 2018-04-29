@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+  //PROJECTS
   // Gets all projects
   getProjects: function() {
     return axios.get("/api/projects");
@@ -16,5 +17,22 @@ export default {
   // Saves a project to the database
   saveProject: function(projectData) {
     return axios.post("/api/projects", projectData);
-  }  
+  },
+  // ACTIONS
+  // Gets all actions
+  getActions: function() {
+    return axios.get("/api/actions");
+  },
+  // Gets the action with the given id
+  getAction: function(id) {
+    return axios.get("/api/actions/" + id);
+  },
+  // Deletes the action with the given id
+  deleteAction: function(id) {
+    return axios.delete("/api/actions/" + id);
+  },
+  // Saves a action to the database
+  saveAction: function(actionData) {
+    return axios.post("/api/actions", actionData);
+  }
 };
