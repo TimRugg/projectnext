@@ -1,14 +1,14 @@
 
 .card {
-    max-width: 265px;
+    width: 345px;
     height: 375px;
-    padding: 6px;
+    padding: 14px;
     border-style: solid;
     border-width: 1px;
     border-color:  #45a26c;
-    box-shadow:6px 6px  #df691a;
+    box-shadow:9px 9px  #df691a;
     float: left;
-    margin: 10px;
+    margin: 14px;
     background: linear-gradient(to right, #283c86,#45a26c);
 }
 

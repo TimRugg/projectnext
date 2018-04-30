@@ -1,0 +1,21 @@
+.updateForm {
+    border:solid;
+    border-width: 1px;
+    border-color:#df691a;
+    margin-bottom: 16px;
+}
+.form-group {
+    padding:14px;
+}
+.updateFormButtons {
+    margin:8px;
+    text-align:center;
+}
+
+.updateFormButtonsbtn {
+    width:100px;
+}
+
+.col-form-label {
+    font-size: 14px;
+}
