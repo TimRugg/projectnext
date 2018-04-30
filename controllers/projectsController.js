@@ -22,9 +22,17 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
+    console.log("projectsController:");
+    console.log("request");
+    console.log(req);
+    console.log("res");
+    console.log(res);
     db.Project
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
+  .then(data1 => {
+    console.log(data1.updatedCount + " records updated!");
+  })
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {

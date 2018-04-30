@@ -1,5 +1,6 @@
 import React from 'react';
 import "./ProjectCard.css";
+import { Link } from "react-router-dom";
 
 const ProjectCard = (props) => {
   return (
@@ -18,7 +19,7 @@ const ProjectCard = (props) => {
 <div className="row cardFooter">
 <div className="col-sm-6">
   <div className="card-body">
-    <a href="#" className="card-link">Edit Project</a>
+    <Link className="card-link" to={"/projects/" + props.project._id}>Edit Project</Link>
   </div>
 </div>
 <div className="col-sm-6">

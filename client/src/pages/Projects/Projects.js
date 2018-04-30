@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import DeleteBtn from "../../components/DeleteBtn";
 // import Jumbotron from "../../components/Jumbotron";
+import "./Projects.css";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 // import { Col, Row, Container } from "../../components/Grid";
@@ -8,6 +9,7 @@ import { Link } from "react-router-dom";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import { Card, CardImg, CardText, CardBody, CardHeader, CardFooter, CardLink,
 //   CardTitle, CardSubtitle, Button } from "reactstrap";
+import NextList from "../../components/NextList";
 import ProjectCard from "../../components/ProjectCard";
 import ProjectTrend from "../../components/ProjectTrend";
 
@@ -15,7 +17,8 @@ class Projects extends Component {
   state = {
     projects: [],
     activeProjects: [],
-    trendProjects: []
+    trendProjects: [],
+    show_all_projects: false
   };
 
   componentDidMount() {
@@ -32,7 +35,7 @@ class Projects extends Component {
       this.setState({ 
         projects: res.data,
         activeProjects: res.data.filter(project => project.status !== "Idea" && project.active ),
-        trendProjects: res.data.filter(project => project.status == "In Progress"),
+        trendProjects: res.data.filter(project => project.status == "In Progress")
         // test1: res.data[9].status,     // results Milestone
         // test2: typeof(res.data),       // results= object
         // test3: Array.isArray(res.data), // results= true
@@ -54,10 +57,6 @@ class Projects extends Component {
       })
       .catch(err => console.log(err));
   };
-
-  activeProjects = (allProjects) => {
-    return allProjects.filter(status => status == "In Progress")
-  }
 
   deleteProject = id => {
     API.deleteProject(id)
@@ -84,27 +83,107 @@ class Projects extends Component {
     }
   };
   
+  toggleShowAll = event => {
+    this.setState({
+      show_all_projects: !this.state.show_all_projects
+    });
+  }
+
   render() {
     return (
-      <div>
-        {/* display all project trends  */}
+      <div className="container">
+
+        {/* display project next list  */}
+        {/* HEADING FOR SECTION: NEXT LIST */}
+        <div className="row">
+          {/* <div className="col-sm-1" /> */}
+          <div className="col-sm-6 projects_section_heading1">
+            What's Next?!
+          </div>
+          <div className="col-sm-6 projects_section_heading2">
+          {/* buttons can go here */}
+          </div>
+        </div>
+        {/* END HEADING FOR SECTION: NEXT LIST */}
+      <div className="row">
+        {/* <div className="col-sm-1"></div> */}
+        <div className="col-sm-12">
+          <NextList />
+        </div>
+        {/* <div className="col-sm-1"></div> */}
+      </div>
+
+        {/* display project trends  */}
+        {/* HEADING FOR SECTION: TRENDS */}
+        <div className="row">
+          {/* <div className="col-sm-1" /> */}
+          <div className="col-sm-6 projects_section_heading1">
+            Project Progress
+          </div>
+          <div className="col-sm-6 projects_section_heading2">
+          {/* buttons can go here */}
+          </div>
+        </div>
+        {/* END HEADING FOR SECTION: TRENDS */}
         {this.state.trendProjects.map(project => (
           <span key={project._id}>
             <ProjectTrend project={project} />
           </span>
         ))}
 
-        {/* display all project cards  */}
-        <div className="row">
-          <div className="col-sm-1" />
-          <div className="col-sm-10">
-            {this.state.activeProjects.map(project => (
-             <span key={project._id}>
-                <ProjectCard project={project} />
-              </span>
-            ))}
+        {/* display project cards  */}
+        {/* HEADING FOR SECTION: PROJECT CARDS */}
+        {/* Ternary function shows all projects and toggles show all button */}
+        {this.state.show_all_projects ? (
+          <div className="row">
+          {/* <div className="col-sm-1" /> */}
+          <div className="col-sm-6 projects_section_heading1">
+            All Projects
           </div>
-          <div className="col-sm-1" />
+          <div className="col-sm-6 projects_section_heading2">
+            <button type="button" className="btn btn-primary projects_section_btn">Create Project</button>
+            <button type="button" className="btn btn-primary projects_section_btn" onClick={() => this.toggleShowAll()}>Limit to Active</button>
+          </div>
+          </div>
+          ) : (
+          <div className="row">
+          {/* <div className="col-sm-1" /> */}
+          <div className="col-sm-6 projects_section_heading1">
+            Active Projects
+          </div>
+          <div className="col-sm-6 projects_section_heading2">
+            <button type="button" className="btn btn-primary projects_section_btn">Create Project</button>
+            <button type="button" className="btn btn-primary projects_section_btn" onClick={() => this.toggleShowAll()}>Show All</button>
+          </div>
+          </div>
+          )
+        }
+        {/* END HEADING FOR SECTION: PROJECT CARDS */}
+        <div className="row">
+        {/* <div className="col-sm-1" /> */}
+
+        <div className="col-sm-12">
+          {this.state.show_all_projects ? (
+            <div>
+                {this.state.projects.map(project => (
+                <span key={project._id}>
+                    <ProjectCard project={project} />
+                  </span>
+                ))}
+            </div>
+            ) : (
+            <div>
+                {this.state.activeProjects.map(project => (
+                  <span key={project._id}>
+                      <ProjectCard project={project} />
+                    </span>
+                ))}
+            </div>
+            )
+          }
+        </div>
+
+        {/* <div className="col-sm-1" /> */}
         </div>
       </div>
     );

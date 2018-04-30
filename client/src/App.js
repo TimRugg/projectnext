@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Projects from "./pages/Projects";
+import Project from "./pages/Project";
 import NoMatch from "./pages/NoMatch";
 // import Nav from "./components/Nav";
 import Header from "./components/Header";
@@ -11,9 +12,9 @@ const App = () => (
   <Router>
     <div>
       <Header />
-      <NextList />
       <Switch>
         <Route exact path="/" component={Projects} />
+        <Route exact path="/projects/:id" component={Project} />
         <Route component={NoMatch} />
       </Switch>
     </div>

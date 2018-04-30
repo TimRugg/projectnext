@@ -14,6 +14,13 @@ export default {
   deleteProject: function(id) {
     return axios.delete("/api/projects/" + id);
   },
+  // Updates a project to the database
+  updateProject: function(id, projectData) {
+    console.log("API>updateProject");
+    console.log("projectData:");
+    console.log(projectData);
+    return axios.put("/api/projects" + id, projectData);
+  },
   // Saves a project to the database
   saveProject: function(projectData) {
     return axios.post("/api/projects", projectData);
