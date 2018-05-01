@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./Projects.css";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import NextList from "../../components/NextList";
 import ProjectCard from "../../components/ProjectCard";
 import ProjectTrend from "../../components/ProjectTrend";
+import CurrentTrend from "../../components/CurrentTrend";
+// import TrendChart from "../../components/TrendChart";
 
 class Projects extends Component {
   state = {
@@ -32,7 +34,7 @@ class Projects extends Component {
             project => project.status !== "Idea" && project.active
           ),
           trendProjects: res.data.filter(
-            project => project.status == "In Progress"
+            project => project.status === "In Progress"
           ),
           title: "",
           description: ""
@@ -84,16 +86,30 @@ class Projects extends Component {
   };
 
   render() {
-    return (
+    return (    
       <div className="container">
         {/* display project next list  */}
         {/* HEADING FOR SECTION: NEXT LIST */}
         <div className="row">
-          <div className="col-sm-6 projects_section_heading1">
+          <div className="col-sm-3 projects_section_heading1">
             What's Next?!
           </div>
-          <div className="col-sm-6 projects_section_heading2">
+          <div className="col-sm-9 projects_section_heading2">
             {/* buttons can go here */}
+  
+            <span>
+            <CurrentTrend project=
+            {{
+              title:"Goal is the longest trend:",
+              current: 7,
+              // current_pct = current/longest
+              current_pct: 50, 
+              longest: 14,
+              // longest_pct = 100% - current_pct
+              longest_pct: 50 
+            }} />
+            </span>
+
           </div>
         </div>
         {/* END HEADING FOR SECTION: NEXT LIST */}

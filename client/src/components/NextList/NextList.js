@@ -18,7 +18,7 @@ const NextList = (props) => {
   <Link className="list-group-item list-group-item-action flex-column align-items-start" to={"/"}>
     <div className="d-flex w-100 justify-content-between">
       <h5 className="mb-1">Buy energy savings lightbulbs.</h5>
-      <small>0 days ago</small>
+      <small>2 days ago</small>
       <p>Project: Reduce energy use.</p>
     </div>
   </Link>

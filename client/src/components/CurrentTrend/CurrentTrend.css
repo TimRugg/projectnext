@@ -1,0 +1,14 @@
+.currentTrendTitle {
+    /* width: 25%; */
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+    
+}
+.bg-info {
+    background-color: #45a26c;
+}
+
+.bg-success {
+    background-color: #283c86;
+}

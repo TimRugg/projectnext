@@ -27,8 +27,8 @@ class Project extends Component {
           title: res.data.title,
           description: res.data.description,
           active: res.data.active
-        }),
-          console.log("loadProject");
+        })
+        console.log("loadProject");
         // console.log("res.data");
         // console.log(res.data);
         console.log("res.data.title");

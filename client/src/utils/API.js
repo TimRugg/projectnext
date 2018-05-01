@@ -25,6 +25,15 @@ export default {
   saveProject: function(projectData) {
     return axios.post("/api/projects", projectData);
   },
+  // DAILY ACTIONS
+  // Gets the action with the given id
+  getDailyActions: function(id) {
+    return axios.get("/api/dailyActions" + id);
+  },
+  // Updates a project to the database
+  updateDailyActions: function(id, dailyActionData) {
+    return axios.put("/api/dailyActions/" + id, dailyActionData);
+  },
   // ACTIONS
   // Gets all actions
   getActions: function() {

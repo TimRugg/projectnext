@@ -4,9 +4,8 @@ import "./App.css";
 import Projects from "./pages/Projects";
 import Project from "./pages/Project";
 import NoMatch from "./pages/NoMatch";
-// import Nav from "./components/Nav";
 import Header from "./components/Header";
-import NextList from "./components/NextList";
+import Footer from "./components/Footer";
 
 const App = () => (
   <Router>
@@ -17,6 +16,7 @@ const App = () => (
         <Route exact path="/projects/:id" component={Project} />
         <Route component={NoMatch} />
       </Switch>
+      <Footer />
     </div>
   </Router>
 );
