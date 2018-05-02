@@ -19,3 +19,10 @@
 .col-form-label {
     font-size: 14px;
 }
+
+.table-dark {
+    background: grey;
+    color: black;
+    border:2px solid black;
+    font-size:14px;
+}

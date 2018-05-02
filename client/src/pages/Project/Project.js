@@ -14,6 +14,7 @@ class Project extends Component {
 
   componentDidMount() {
     this.loadProject(this.props.match.params.id);
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     console.log("componentDidMount");
     console.log(this.props.match.params.id);
   }
@@ -27,18 +28,7 @@ class Project extends Component {
           title: res.data.title,
           description: res.data.description,
           active: res.data.active
-        })
-        console.log("loadProject");
-        // console.log("res.data");
-        // console.log(res.data);
-        console.log("res.data.title");
-        console.log(res.data.title);
-        console.log("this.props.match.params.id");
-        console.log(this.props.match.params.id);
-        console.log("res.data.description");
-        console.log(res.data.description);
-        console.log("res.data.active");
-        console.log(res.data.active);
+        });
       })
       .catch(err => console.log(err));
   };
@@ -46,6 +36,7 @@ class Project extends Component {
   deleteProject = id => {
     API.deleteProject(id)
       .then(res => this.loadProject(this.props.match.params.id))
+      .then(this.props.history.push("/"))
       .catch(err => console.log(err));
   };
 
@@ -54,31 +45,28 @@ class Project extends Component {
     this.setState({
       [name]: value
     });
-    console.log("handleInputChange event.target");
   };
 
-  handleFormUpdate = (id, projectData) => {
-    // event.preventDefault();
-    // if (this.state.title) {
-    API.updateProject(id, projectData)
-      .then(res => this.loadProject(this.props.match.params.id))
+  handleFormUpdate = event => {
+    event.preventDefault();
+
+    const id = this.props.match.params.id;
+
+    const data = {
+      title: this.state.title,
+      description: this.state.description,
+      active: this.state.active
+    };
+
+    API.updateProject(id, data)
+      .then(res => {
+        console.log("Res: " + res.data);
+        this.loadProject(this.props.match.params.id);
+      })
       .catch(err => console.log(err));
     // }
     console.log("handleFormSave API.updateProject");
   };
-
-  // handleFormCreate = event => {
-  //   event.preventDefault();
-  //   if (this.state.title) {
-  //     API.saveProject({
-  //       title: this.state.title,
-  //       description: this.state.description,
-  //       active: this.state.active
-  //     })
-  //       .then(res => this.loadProject(this.props.match.params.id))
-  //       .catch(err => console.log(err));
-  //   }
-  // };
 
   render() {
     return (
@@ -139,6 +127,7 @@ class Project extends Component {
                   Active (uncheck to archive and remove project from dashboard)
                 </label>
               </div>
+
               <div className="updateFormButtons row">
                 <div className="col-sm-6">
                   {/* UPDATE button */}
@@ -146,13 +135,7 @@ class Project extends Component {
                     type="submit"
                     className="btn btn-primary updateFormButtonsbtn"
                     disabled={!this.state.title}
-                    onClick={() =>
-                      this.handleFormUpdate(this.state.id, {
-                        title: this.state.title,
-                        description: this.state.description,
-                        active: this.state.active
-                      })
-                    }
+                    onClick={this.handleFormUpdate}
                   >
                     Update
                   </button>
@@ -185,7 +168,33 @@ class Project extends Component {
         </div>
         {/* END HEADING FOR SECTION: LIST OF ACTIONS */}
         <div className="col-sm-2" />
-        <div className="col-sm-8">Future Home of List of Actions</div>
+        <div className="col-sm-8">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Action</th>
+                <th scope="col">Complete?</th>
+                <th scope="col">Complete Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="table-dark">
+                <th scope="row">1</th>
+                <td>Make appointment to review list.</td>
+                <td>Yes</td>
+                <td>4/21/2018</td>
+              </tr>
+              <tr className="table-dark">
+                <th scope="row">2</th>
+                <td>Go to store and buy needed supplies.</td>
+                <td>No</td>
+                <td />
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         {/* display project next list  */}
         {/* HEADING FOR SECTION: NEXT LIST */}
         <div className="row">
@@ -202,8 +211,6 @@ class Project extends Component {
             <NextList />
           </div>
         </div>
-        Display List of Actions Create Action Edit Action Delete Action Delete
-        Project / Actions
       </div>
     );
   }

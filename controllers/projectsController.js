@@ -24,7 +24,7 @@ module.exports = {
   update: function(req, res) {
     console.log("projectsController:");
     console.log("request");
-    console.log(req);
+    console.log(req.body);
     console.log("res");
     console.log(res);
     db.Project

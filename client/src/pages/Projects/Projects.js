@@ -23,6 +23,7 @@ class Projects extends Component {
     // console.log(this.state.projects);
     // console.log("====================")
     this.loadProjects();
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
   loadProjects = () => {
@@ -76,6 +77,7 @@ class Projects extends Component {
     this.setState({
       show_create: !this.state.show_create
     });
+    document.getElementById("showCreateButton").blur();
     console.log("Show Create!", this.state.show_create);
   };
 
@@ -83,10 +85,11 @@ class Projects extends Component {
     this.setState({
       show_all_projects: !this.state.show_all_projects
     });
+    document.getElementById("toggleShowAllButton").blur();
   };
 
   render() {
-    return (    
+    return (
       <div className="container">
         {/* display project next list  */}
         {/* HEADING FOR SECTION: NEXT LIST */}
@@ -96,20 +99,20 @@ class Projects extends Component {
           </div>
           <div className="col-sm-9 projects_section_heading2">
             {/* buttons can go here */}
-  
-            <span>
-            <CurrentTrend project=
-            {{
-              title:"Goal is the longest trend:",
-              current: 7,
-              // current_pct = current/longest
-              current_pct: 50, 
-              longest: 14,
-              // longest_pct = 100% - current_pct
-              longest_pct: 50 
-            }} />
-            </span>
 
+            <span>
+              <CurrentTrend
+                project={{
+                  title: "Goal is the longest trend:",
+                  current: 7,
+                  // current_pct = current/longest
+                  current_pct: 50,
+                  longest: 14,
+                  // longest_pct = 100% - current_pct
+                  longest_pct: 50
+                }}
+              />
+            </span>
           </div>
         </div>
         {/* END HEADING FOR SECTION: NEXT LIST */}
@@ -205,6 +208,7 @@ class Projects extends Component {
               <button
                 type="button"
                 className="btn btn-primary projects_section_btn"
+                id="showCreateButton"
                 onClick={() => this.toggleShowCreate()}
               >
                 Create Project
@@ -212,6 +216,7 @@ class Projects extends Component {
               <button
                 type="button"
                 className="btn btn-primary projects_section_btn"
+                id="toggleShowAllButton"
                 onClick={() => this.toggleShowAll()}
               >
                 Limit to Active
@@ -227,6 +232,7 @@ class Projects extends Component {
               <button
                 type="button"
                 className="btn btn-primary projects_section_btn"
+                id="showCreateButton"
                 onClick={() => this.toggleShowCreate()}
               >
                 Create Project
@@ -235,6 +241,7 @@ class Projects extends Component {
               <button
                 type="button"
                 className="btn btn-primary projects_section_btn"
+                id="toggleShowAllButton"
                 onClick={() => this.toggleShowAll()}
               >
                 Show All

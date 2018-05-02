@@ -19,7 +19,7 @@ export default {
     console.log("API>updateProject");
     console.log("projectData:");
     console.log(projectData);
-    return axios.put("/api/projects" + id, projectData);
+    return axios.put("/api/projects/" + id, projectData);
   },
   // Saves a project to the database
   saveProject: function(projectData) {
@@ -28,7 +28,7 @@ export default {
   // DAILY ACTIONS
   // Gets the action with the given id
   getDailyActions: function(id) {
-    return axios.get("/api/dailyActions" + id);
+    return axios.get("/api/dailyActions/" + id);
   },
   // Updates a project to the database
   updateDailyActions: function(id, dailyActionData) {
